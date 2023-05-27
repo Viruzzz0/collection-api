@@ -1,5 +1,5 @@
 import express from 'express'
-import mycors from 'cors'
+// import mycors from 'cors'
 import ServerConnection from './database.js'
 import Collections from './models/saveCollections.js'
 import { config } from 'dotenv'
