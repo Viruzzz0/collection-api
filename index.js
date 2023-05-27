@@ -14,12 +14,12 @@ const app = express()
 const port = process.env.PORT || 3001
 // const URL = process.env.URL_FRONTEND
 
-// app.use(
-//   mycors({
-//     origin: 'https://collectionsx.netlify.app',
-//     methods: ['GET', 'POST']
-//   })
-// )
+app.use(
+  mycors({
+    origin: 'https://collectionsx.netlify.app',
+    methods: ['GET', 'POST']
+  })
+)
 
 app.use(express.json())
 app.use(express.text())
