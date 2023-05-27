@@ -1,5 +1,5 @@
 import express from 'express'
-// import mycors from 'cors'
+import mycors from 'cors'
 import ServerConnection from './database.js'
 import Collections from './models/saveCollections.js'
 import { config } from 'dotenv'
@@ -14,9 +14,9 @@ const app = express()
 const port = process.env.PORT || 3001
 // const URL = process.env.URL_FRONTEND
 
-// app.use(
-//   mycors()
-// )
+app.use(
+  mycors()
+)
 
 app.use(express.json())
 app.use(express.text())
