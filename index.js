@@ -16,7 +16,7 @@ const port = process.env.PORT || 3001
 
 app.use(
   mycors({
-    origin: 'https://collectionsx.netlify.app/',
+    origin: 'https://collectionsx.netlify.app',
     methods: ['GET', 'POST']
   })
 )
