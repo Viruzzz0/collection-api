@@ -2,6 +2,9 @@ import express from 'express'
 import mycors from 'cors'
 import ServerConnection from './database.js'
 import Collections from './models/saveCollections.js'
+import { config } from 'dotenv'
+
+config()
 
 ServerConnection()
 
@@ -13,7 +16,7 @@ const port = process.env.PORT || 3001
 
 app.use(
   mycors({
-    origin: 'http://localhost:5173',
+    origin: 'https://collectionsx.netlify.app/',
     methods: ['GET', 'POST']
   })
 )
