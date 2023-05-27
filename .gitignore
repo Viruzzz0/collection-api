@@ -1,0 +1,29 @@
+# Dependencias
+node_modules
+
+# Archivos generados por el sistema
+.DS_Store
+
+# Logs y resultados de pruebas
+logs
+results
+
+# Archivos de compilación
+dist
+build
+out
+
+# Variables de ambiente (por seguridad)
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Directorio de cobertura de pruebas
+coverage
+
+# Archivos de configuración de IDE
+.idea
+.vscode
