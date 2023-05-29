@@ -24,7 +24,19 @@ app.use(express.text())
 // Cuando te hagan un post http://localhost:3000/transactions
 app.post('/register', async (req, res) => {
   const user = req.body
-  // const token = user.auth.accessToken
+
+  const uid = user.auth.uid
+
+  const userMdb = await Collections.findOne({ uid })
+
+  if (userMdb) {
+    console.log('user exists')
+    res.send({
+      message: 'user exists'
+    })
+    return
+  }
+
   const newCollections = new Collections(user)
 
   newCollections
