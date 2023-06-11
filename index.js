@@ -5,7 +5,6 @@ import Collections from './models/saveCollections.js'
 import { config } from 'dotenv'
 
 config()
-
 ServerConnection()
 
 // import ServerConnection from './database.js'
@@ -24,7 +23,6 @@ app.use(express.text())
 // Cuando te hagan un post http://localhost:3000/transactions
 app.post('/register', async (req, res) => {
   const user = req.body
-
   const uid = user.auth.uid
 
   const userMdb = await Collections.findOne({ uid })
@@ -72,8 +70,6 @@ app.post('/saveCollections', async (req, res) => {
 
 app.post('/gettingCollections', async (req, res) => {
   const uid = req.body
-
-  console.log(uid)
   const filter = { uid }
 
   const user = await Collections.findOne(filter)
