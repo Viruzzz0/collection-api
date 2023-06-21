@@ -7,11 +7,8 @@ import { config } from 'dotenv'
 config()
 ServerConnection()
 
-// import ServerConnection from './database.js'
-
 const app = express()
 const port = process.env.PORT || 3001
-// const URL = process.env.URL_FRONTEND
 
 app.use(
   mycors()
@@ -23,7 +20,7 @@ app.use(express.text())
 // Cuando te hagan un post http://localhost:3000/transactions
 app.post('/register', async (req, res) => {
   const user = req.body
-  const uid = user.auth.uid
+  const uid = req.body.uid
 
   const userMdb = await Collections.findOne({ uid })
 
@@ -36,15 +33,16 @@ app.post('/register', async (req, res) => {
   }
 
   const newCollections = new Collections(user)
+  const messages = {
+    message: 'User registered in the database',
+    user: user.user
+  }
 
   newCollections
     .save()
     .then(() => console.log('new user added'))
     .then(() => {
-      res.send({
-        message: 'User registered in the database',
-        user: user.user
-      })
+      res.send(messages)
     })
     .catch(err => console.error('Error saving file', err))
 })
@@ -69,17 +67,22 @@ app.post('/saveCollections', async (req, res) => {
 })
 
 app.post('/gettingCollections', async (req, res) => {
-  const uid = req.body
+  const { uid } = await req.body
   const filter = { uid }
 
   const user = await Collections.findOne(filter)
-
-  res.send({
+  const msg = {
     message: 'getting collections',
     user
-  })
+  }
+
+  res
+    .status(200)
+    .send(msg)
 })
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Estoy ejecutandome en http://localhost:${port}`)
 })
+
+export { app, server }
